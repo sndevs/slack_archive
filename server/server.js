@@ -14,6 +14,7 @@ var express = require('express')
 var app = express()
 app.get('/api/channels', function(req, res) {
     ChannelModel.find({}).select('id name').exec(function(err, ret) {
+        console.log(ret);
         res.json(ret)
     })
 })
