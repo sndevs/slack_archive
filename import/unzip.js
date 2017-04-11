@@ -1,12 +1,19 @@
-var unzip = require('unzip')
-module.exports = function getSlackZip() {
+var unzip = require('unzip');
+var path = require('path');
+var zippath = path.join(__dirname,'..');
+console.log('dirname'+ __dirname)
+getSlackZip()
+function getSlackZip() {
     fs =  require('fs');
-    var dir = fs.readdirSync('../');
+    console.log(__dirname)
+    var dir = fs.readdirSync(zippath);
     var zipfile = null
     dir.forEach(function(file) {
+        console.log(file)
         if(file.indexOf('.zip') > -1) {
             zipfile = file;
         }
     })
-    return fs.createReadStream('../'+zipfile).pipe(unzip.Extract({ path: 'archive' }));
+    return fs.createReadStream(path.join(zippath,zipfile)).pipe(unzip.Extract({ path: 'archive' }));
 }
+module.exports = getSlackZip

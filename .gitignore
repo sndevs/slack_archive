@@ -1,5 +1,5 @@
 node_modules
 archive
 website/node_modules
-data
 npm-debug.log
+data/*
